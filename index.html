@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <!-- 모바일 필수: 이 태그가 없으면 폰에서 PC용 화면처럼 축소되어 터치가 스크롤/확대로 해석됨 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+    />
     <title>과제 모음</title>
     <style>
       /* 허브 페이지는 절대 스크롤/선택되지 않게 고정 (아이폰에서 터치가 페이지 스크롤로 새는 것 방지) */
-      html, body {
+      html,
+      body {
+        width: 100%;
         height: 100%;
         margin: 0;
         overflow: hidden;
@@ -17,12 +22,16 @@
         -webkit-touch-callout: none;
         font-family: sans-serif;
       }
+      /* 왼쪽 메뉴와 과제 화면을 가로로 배치 */
+      body {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+      }
+
       /* 왼쪽 메뉴 */
       #menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100px;
+        width: fit-content;
+        max-width: calc(84px + 40px);
         height: 100%;
         padding: 20px;
         box-sizing: border-box;
@@ -33,14 +42,14 @@
         margin-bottom: 10px;
         cursor: pointer;
         color: blue;
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
+      /* 오른쪽 과제 화면 */
       /* iframe 영역: 메뉴(100px)를 뺀 나머지 화면 전체 */
       #stage {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 100px;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
       }
       #viewer {
@@ -56,11 +65,13 @@
       <a onclick="loadHomework('Homework1')">Homework1</a>
       <a onclick="loadHomework('Homework2')">Homework2</a>
       <a onclick="loadHomework('Homework3')">Homework3</a>
+      <a onclick="loadHomework('Homework4')">Dynamic Balance</a>
+      <a onclick="loadHomework('Homework5')">test</a>
     </div>
 
     <div id="stage">
       <!-- 처음 열었을 때 보여줄 과제 -->
-      <iframe id="viewer" src="Homework1/index.html"></iframe>
+      <iframe id="viewer" src="Homework5/index.html"></iframe>
     </div>
 
     <script>
