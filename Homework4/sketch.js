@@ -84,7 +84,7 @@ function setup() {
   });
 
   // 원을 세로로 긴 타원으로 변형
-  Body.scale(yellowOval, 0.8, 1.4);
+  MatterBody.scale(yellowOval, 0.8, 1.4);
 
   // 오른쪽의 빨간 둥근 삼각형
   redRoundedTriangle = Bodies.polygon(width / 2 + 260, 600, 3, 45, {
@@ -237,7 +237,7 @@ function draw() {
   if (millis() >= 300) {
     let wind = sin(frameCount * 0.02) * 0.001;
 
-    MatterapplyForce(yellowOval, yellowOval.position, { x: wind, y: 0 });
+    MatterBody.applyForce(yellowOval, yellowOval.position, { x: wind, y: 0 });
 
     MatterBody.applyForce(blueDiamond, blueDiamond.position, { x: wind * 0.8, y: 0 });
 
