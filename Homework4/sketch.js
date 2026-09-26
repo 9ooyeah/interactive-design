@@ -4,6 +4,7 @@ const Composite = Matter.Composite;
 const MatterBody = Matter.Body;
 const Constraint = Matter.Constraint;
 const Vector = Matter.Vector;
+const MOBILE_SCALE = 0.8;
 
 let engine;
 let world;
@@ -239,7 +240,10 @@ function draw() {
 
     MatterBody.applyForce(yellowOval, yellowOval.position, { x: wind, y: 0 });
 
-    MatterBody.applyForce(blueDiamond, blueDiamond.position, { x: wind * 0.8, y: 0 });
+    MatterBody.applyForce(blueDiamond, blueDiamond.position, {
+      x: wind * 0.8,
+      y: 0,
+    });
 
     MatterBody.applyForce(redRoundedTriangle, redRoundedTriangle.position, {
       x: wind * 1.2,
@@ -250,6 +254,12 @@ function draw() {
   }
 
   background(BG);
+
+  // 화면 위쪽 가운데를 기준으로 모빌 전체를 80% 크기로 축소
+  push();
+  translate(width / 2, 0);
+  scale(MOBILE_SCALE);
+  translate(-width / 2, 0);
 
   // 천장에 붙은 고정 장치
   fill("#222222");
@@ -396,7 +406,9 @@ function draw() {
 
   endShape(CLOSE);
 
-  pop();
+  pop(); // 파란 도형의 push() 닫기
+
+  pop(); // 모빌 전체 축소의 push() 닫기
 }
 
 // Matter.js 연결줄을 화면에 그리는 함수
