@@ -234,6 +234,7 @@ function setup() {
 }
 
 function draw() {
+  
   // 시작 후 0.3초가 지나면 바람과 물리엔진 실행
   if (millis() >= 300) {
     let wind = sin(frameCount * 0.02) * 0.001;
