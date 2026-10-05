@@ -6,7 +6,7 @@ const DESIGN_HEIGHT = 1000;
 let sceneScale = 1;
 
 // 처음 보여줄 레벨
-let currentLevel = 3;
+let currentLevel = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
