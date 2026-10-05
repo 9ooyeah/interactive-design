@@ -4,7 +4,6 @@ const DESIGN_HEIGHT = 1000;
 
 // 화면 배율
 let sceneScale = 1;
-
 // 처음 보여줄 레벨
 let currentLevel = 1;
 
