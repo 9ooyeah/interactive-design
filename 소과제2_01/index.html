@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no"
+    />
+
+    <title>과제 모음</title>
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background-color: #1d0811;
+      }
+
+      body {
+        touch-action: none;
+        overscroll-behavior: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-touch-callout: none;
+      }
+
+      canvas {
+        display: block;
+        touch-action: none;
+      }
+
+      /* 화면 위 중앙의 레벨 버튼 */
+      .level-buttons {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10;
+        white-space: nowrap;
+      }
+
+      .level-buttons button {
+        padding: 10px 16px;
+        border: 2px solid #fff5df;
+        border-radius: 24px;
+        background-color: #72102d;
+        color: #fff5df;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+
+      /* 선택된 레벨 */
+      .level-buttons button.active {
+        background-color: #ffdf36;
+        color: #72102d;
+      }
+
+      /* 좁은 화면에서는 버튼 크기 줄이기 */
+      @media (max-width: 400px) {
+        .level-buttons {
+          gap: 6px;
+        }
+
+        .level-buttons button {
+          padding: 8px 10px;
+          font-size: 12px;
+        }
+      }
+    </style>
+
+    <!-- 라이브러리 -->
+    <script src="../p5.min.js"></script>
+    <script src="../addons/matter.js"></script>
+
+    <!-- 내가 만든 코드 -->
+    <script src="balloon.js"></script>
+    <script src="level1.js"></script>
+    <script src="level2.js"></script>
+    <script src="level3.js"></script>
+    <script src="sketch.js"></script>
+  </head>
+
+  <body>
+    <!-- 레벨 선택 버튼 -->
+    <nav class="level-buttons" aria-label="레벨 선택">
+      <button type="button" onclick="changeLevel(1)">
+        LEVEL 1
+      </button>
+
+      <button type="button" onclick="changeLevel(2)">
+        LEVEL 2
+      </button>
+
+      <button type="button" onclick="changeLevel(3)">
+        LEVEL 3
+      </button>
+    </nav>
+
+    <script>
+      // 버튼 터치가 캔버스의 풍선 터치로 전달되지 않도록
+      const levelButtons = document.querySelector(".level-buttons");
+
+      ["mousedown", "touchstart", "pointerdown"].forEach((eventName) => {
+        levelButtons.addEventListener(eventName, function (event) {
+          event.stopPropagation();
+        });
+      });
+
+      // 터치 드래그로 페이지가 움직이는 것 방지
+      document.addEventListener(
+        "touchmove",
+        function (event) {
+          event.preventDefault();
+        },
+        { passive: false }
+      );
+    </script>
+  </body>
+</html>
